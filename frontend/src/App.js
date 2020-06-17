@@ -5,37 +5,6 @@ import Modal from './components/Modal';
 import axios from "axios";
 
 
-const todoItems = [
-      {
-        id: 1,
-        title: "Go to Market",
-        description: "Buy ingredients to prepare dinner",
-        completed: true,
-        status: 't'
-      },
-      {
-        id: 2,
-        title: "Study",
-        description: "Read Algebra and History textbook for upcoming test",
-        completed: false,
-        status: 't'
-      },
-      {
-        id: 3,
-        title: "Sally's books",
-        description: "Go to library to rent sally's books",
-        completed: true,
-        status: 'd'
-      },
-      {
-        id: 4,
-        title: "Article",
-        description: "Write article on how to use django with react",
-        completed: false,
-        status: 't'
-      }
-    ];
-
 class App extends Component {
   constructor(props) {
         super(props);
@@ -47,7 +16,7 @@ class App extends Component {
             description: "",
             completed: false
           },
-          todoList: todoItems
+          todoList: [],
         };
       }
   componentDidMount() {
@@ -55,12 +24,14 @@ class App extends Component {
   }
   refreshList = () => {
     axios
-      .get("http://localhost:8000/api/tasks/")
+      .get("http://localhost:8000/api/tasks")
       .then(res => this.setState({ todoList: res.data }))
       .catch(err => console.log(err));
   };
+
   toggle = () => {
     this.setState({ modal: !this.state.modal });
+    console.log(this.state.todoList);
   };
   handleSubmit = item => {
     this.toggle();
@@ -92,26 +63,25 @@ class App extends Component {
     }
     return this.setState({ viewCompleted: false });
   };
-
-  render(){return (
+  render(){ return(
     <main className="content">
 
             <Container
             header="todo"
-            tasks={todoItems.filter(item => item.status==="t")}
+            tasks={this.state.todoList.filter(item => item.status==="t")}
             onTaskClick={this.editItem} />
 
             <Container
             header="in process"
-            tasks={todoItems.filter(item => item.status==="p")} />
+            tasks={this.state.todoList.filter(item => item.status==="p")} />
 
             <Container
             header="blocked"
-            tasks={todoItems.filter(item => item.status==="b")} />
+            tasks={this.state.todoList.filter(item => item.status==="b")} />
 
             <Container
             header="done"
-            tasks={todoItems.filter(item => item.status==="d")} />
+            tasks={this.state.todoList.filter(item => item.status==="d")} />
 
     {this.state.modal ? (
             <Modal
