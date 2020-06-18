@@ -1,35 +1,67 @@
-.content {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      background-color: #282c34;
-    }
-    .todo-title {
-      cursor: pointer;
-    }
-    .completed-todo {
-      text-decoration: line-through;
-    }
-    .tab-list > span {
-      padding: 5px 8px;
-      border: 1px solid #282c34;
-      border-radius: 10px;
-      margin-right: 5px;
-      cursor: pointer;
-    }
-    .tab-list > span.active {
-      background-color: #282c34;
-      color: #ffffff;
-    }
-
 .content .container {
   overflow-x: hidden;
   overflow-y: hidden;
   width:300px;
-  height:700px;
+  height:600px;
   float:left;
+  margin: 0;
+  padding: 0;
+  border: 1px solid grey;
+  background-color: #282c34;
+}
+
+ul{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50px;
+  padding:5px;
+}
+li {
+  margin: 0 0 20px 0;
+  position:relative;
+  left:0px;
+  padding-left:1em
+}
+
+main{
+  background-color: #282c34;
+}
+
+.new-task{
+  background-color: #282c34;
+  transition-duration: 0.4s;
+  margin:5px;
+}
+
+.new-task:hover {
+  background-color: #61dafb;
+  color: white;
+}
+
+h2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  font-family: 'Inconsolata', monospace;
+}
+
+html{
+  background-color: #282c34;
+}
+
+h3{
+  font-family: 'Inconsolata', monospace;
+}
+
+.task-description{
+  font-family: 'Asap', sans-serif;
+}
+
+.containers{
+  display: flex;
+  justify-content: space-between;
 }

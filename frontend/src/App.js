@@ -66,39 +66,40 @@ class App extends Component {
   };
   render(){ return(
     <main className="content">
-      <div className="button new-task">
-        <button onClick={this.createItem}>
-          New task
-        </button>
+      <button className="button new-task" onClick={this.createItem}>
+        <h2>New task</h2>
+      </button>
+
+      <div className="containers">
+        <Container
+        header="todo"
+        tasks={this.state.todoList.filter(item => item.status==="t")}
+        onTaskClick={this.editItem} />
+
+        <Container
+        header="in process"
+        tasks={this.state.todoList.filter(item => item.status==="p")}
+        onTaskClick={this.editItem}  />
+
+        <Container
+        header="blocked"
+        tasks={this.state.todoList.filter(item => item.status==="b")}
+        onTaskClick={this.editItem} />
+
+        <Container
+        header="done"
+        tasks={this.state.todoList.filter(item => item.status==="d")}
+        onTaskClick={this.editItem} />
+
+      {this.state.modal ? (
+              <Modal
+                activeItem={this.state.activeItem}
+                toggle={this.toggle}
+                onSave={this.handleSubmit}
+              />
+            ) : null}
+
       </div>
-
-      <Container
-      header="todo"
-      tasks={this.state.todoList.filter(item => item.status==="t")}
-      onTaskClick={this.editItem} />
-
-      <Container
-      header="in process"
-      tasks={this.state.todoList.filter(item => item.status==="p")}
-      onTaskClick={this.editItem}  />
-
-      <Container
-      header="blocked"
-      tasks={this.state.todoList.filter(item => item.status==="b")}
-      onTaskClick={this.editItem} />
-
-      <Container
-      header="done"
-      tasks={this.state.todoList.filter(item => item.status==="d")}
-      onTaskClick={this.editItem} />
-
-    {this.state.modal ? (
-            <Modal
-              activeItem={this.state.activeItem}
-              toggle={this.toggle}
-              onSave={this.handleSubmit}
-            />
-          ) : null}
     </main>
   );}
 }

@@ -14,8 +14,8 @@ class Task extends Component{
   render(){return (
     <li className='card task' onClick={this.editTask}>
     <div className="task" draggable="true" id={getTaskId(this.props)}>
-    <h2>{this.props.title}</h2>
-    <p>{this.props.description}</p>
+    <h3>{this.props.title}</h3>
+    <p className="task-description">{this.props.description}</p>
     </div>
     </li>
   );}

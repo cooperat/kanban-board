@@ -15,7 +15,7 @@ const tasks = props.tasks.map(task => <Task
 
   return (
     <div className="card container">
-      <h1> {props.header} </h1>
+      <h2 className="container-header"> {props.header} </h2>
       <ul
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading"
