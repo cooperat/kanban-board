@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
+import TaskInformation from './TaskInformation';
 
 function getTaskId(props){
   return "task-" + props.id;
 }
 
-
 class Task extends Component{
   editTask = () => {
-    this.props.onTaskClick(this);
+    const taskInfo = new TaskInformation(this.props.id, this.props.title, this.props.description, this.props.completed,
+    this.props.status);
+    this.props.onTaskClick(taskInfo);
   };
   render(){return (
     <li className='card task' onClick={this.editTask}>

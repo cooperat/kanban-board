@@ -10,7 +10,8 @@ const tasks = props.tasks.map(task => <Task
   completed={task.completed}
   onTaskClick={props.onTaskClick}
   key={task.id}
-  id={task.id}/>);
+  id={task.id}
+  status={task.status}/>);
 
   return (
     <div className="card container">

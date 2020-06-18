@@ -14,10 +14,12 @@ class App extends Component {
           activeItem:{
             title: "",
             description: "",
-            completed: false
+            completed: false,
+            status:""
           },
           todoList: [],
         };
+        this.createItem = this.createItem.bind(this);
       }
   componentDidMount() {
     this.refreshList();
@@ -31,7 +33,6 @@ class App extends Component {
 
   toggle = () => {
     this.setState({ modal: !this.state.modal });
-    console.log(this.state.todoList);
   };
   handleSubmit = item => {
     this.toggle();
@@ -51,7 +52,7 @@ class App extends Component {
       .then(res => this.refreshList());
   };
   createItem = () => {
-    const item = { title: "", description: "", completed: false };
+    const item = { title: "", description: "", completed: false, status:"t" };
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
   editItem = item => {
@@ -65,23 +66,31 @@ class App extends Component {
   };
   render(){ return(
     <main className="content">
+      <div className="button new-task">
+        <button onClick={this.createItem}>
+          New task
+        </button>
+      </div>
 
-            <Container
-            header="todo"
-            tasks={this.state.todoList.filter(item => item.status==="t")}
-            onTaskClick={this.editItem} />
+      <Container
+      header="todo"
+      tasks={this.state.todoList.filter(item => item.status==="t")}
+      onTaskClick={this.editItem} />
 
-            <Container
-            header="in process"
-            tasks={this.state.todoList.filter(item => item.status==="p")} />
+      <Container
+      header="in process"
+      tasks={this.state.todoList.filter(item => item.status==="p")}
+      onTaskClick={this.editItem}  />
 
-            <Container
-            header="blocked"
-            tasks={this.state.todoList.filter(item => item.status==="b")} />
+      <Container
+      header="blocked"
+      tasks={this.state.todoList.filter(item => item.status==="b")}
+      onTaskClick={this.editItem} />
 
-            <Container
-            header="done"
-            tasks={this.state.todoList.filter(item => item.status==="d")} />
+      <Container
+      header="done"
+      tasks={this.state.todoList.filter(item => item.status==="d")}
+      onTaskClick={this.editItem} />
 
     {this.state.modal ? (
             <Modal
