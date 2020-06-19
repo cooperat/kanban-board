@@ -43,7 +43,7 @@ export default class CustomModal extends Component {
     });
   }
   render() {
-    const { toggle, onSave } = this.props;
+    const { toggle, onSave, onDelete } = this.props;
     return (
       <Modal isOpen={true} toggle={toggle}>
         <ModalHeader toggle={toggle}> Todo Item </ModalHeader>
@@ -94,9 +94,12 @@ export default class CustomModal extends Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="success" onClick={() => onSave(this.state.activeItem)}>
-            Save
-          </Button>
+        <Button color="danger" onClick={() => onDelete(this.state.activeItem)}>
+          Delete
+        </Button>
+        <Button color="success" onClick={() => onSave(this.state.activeItem)}>
+          Save
+        </Button>
         </ModalFooter>
       </Modal>
     );

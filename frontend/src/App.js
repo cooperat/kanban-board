@@ -47,6 +47,7 @@ class App extends Component {
       .then(res => this.refreshList());
   };
   handleDelete = item => {
+    this.toggle();
     axios
       .delete(`http://localhost:8000/api/tasks/${item.id}`)
       .then(res => this.refreshList());
@@ -96,6 +97,7 @@ class App extends Component {
                 activeItem={this.state.activeItem}
                 toggle={this.toggle}
                 onSave={this.handleSubmit}
+                onDelete={this.handleDelete}
               />
             ) : null}
 
