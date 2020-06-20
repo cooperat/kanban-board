@@ -11,7 +11,8 @@ const tasks = props.tasks.map(task => <Task
   onTaskClick={props.onTaskClick}
   key={task.id}
   id={task.id}
-  status={task.status}/>);
+  status={task.status}
+  due_date={task.due_date}/>);
 
   return (
     <div className="card container">

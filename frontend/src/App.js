@@ -3,6 +3,7 @@ import './App.css';
 import Container from './components/Container'
 import Modal from './components/Modal';
 import axios from "axios";
+import moment from 'moment';
 
 
 class App extends Component {
@@ -15,7 +16,8 @@ class App extends Component {
             title: "",
             description: "",
             completed: false,
-            status:""
+            status:"",
+            due_date: moment('1999-01-01', 'YYYY-MM-dd')
           },
           todoList: [],
         };
@@ -34,8 +36,22 @@ class App extends Component {
   toggle = () => {
     this.setState({ modal: !this.state.modal });
   };
+  stringToDate = stringDate => {
+    return moment(stringDate, 'YYYY-MM-dd');
+  }
+  dateToString = momentDate => {
+    return momentDate.format().slice(0, 10);
+  }
+
+  changeItemMomentDateToStringDate = item => {
+    let momentDate = item["due_date"];
+    item["due_date"] = this.dateToString(momentDate);
+    return item;
+  }
+
   handleSubmit = item => {
     this.toggle();
+    item = this.changeItemMomentDateToStringDate(item);
     if (item.id) {
       axios
         .put(`http://localhost:8000/api/tasks/${item.id}/`, item)
@@ -48,12 +64,13 @@ class App extends Component {
   };
   handleDelete = item => {
     this.toggle();
+    item = this.changeItemMomentDateToStringDate(item);
     axios
       .delete(`http://localhost:8000/api/tasks/${item.id}`)
       .then(res => this.refreshList());
   };
   createItem = () => {
-    const item = { title: "", description: "", completed: false, status:"t" };
+    const item = { title: "", description: "", completed: false, status:"t", due_date: moment('1999-01-01') };
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
   editItem = item => {

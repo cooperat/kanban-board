@@ -8,7 +8,7 @@ function getTaskId(props){
 class Task extends Component{
   editTask = () => {
     const taskInfo = new TaskInformation(this.props.id, this.props.title, this.props.description, this.props.completed,
-    this.props.status);
+    this.props.status, this.props.due_date);
     this.props.onTaskClick(taskInfo);
   };
   render(){return (

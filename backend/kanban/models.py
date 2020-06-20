@@ -21,5 +21,7 @@ class Task(models.Model):
         help_text='Task status',
     )
 
+    due_date = models.DateField(null=True, blank=True)
+    
     def _str_(self):
         return self.title
