@@ -110,6 +110,7 @@ export default class CustomModal extends Component {
             focused={this.state.focused}
             onFocusChange={({ focused }) => this.setState({ focused })}
             id="date-picker"
+            isOutsideRange={() => false}
           />
           </Form>
         </ModalBody>

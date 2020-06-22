@@ -17,7 +17,8 @@ class App extends Component {
             description: "",
             completed: false,
             status:"",
-            due_date: moment('1999-01-01', 'YYYY-MM-dd')
+            due_date: moment('1999-01-01', 'YYYY-MM-dd'),
+            isLate:false
           },
           todoList: [],
         };

@@ -70,3 +70,10 @@ div.toggle-buttons.modal-footer{
   display: flex;
   justify-content: space-between;
 }
+
+div.late-information{
+
+  width:200px;
+  content: "";
+  height:10px;
+}

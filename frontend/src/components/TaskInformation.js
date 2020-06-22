@@ -4,6 +4,7 @@ function stringToDate(stringDate){
   return moment(stringDate);
 }
 
+
 class TaskInformation{
   constructor(id, title, description, completed, status, due_date){
     this.id = id;
