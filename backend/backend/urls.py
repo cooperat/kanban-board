@@ -25,7 +25,23 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from kanban import views
+from rest_framework_jwt.views import obtain_jwt_token
 
 router = routers.DefaultRouter()
 router.register(r'tasks', views.TaskView, 'task')
 urlpatterns = [path('admin/', admin.site.urls),path('api/', include(router.urls))]
+
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
+
+urlpatterns = [
+    #...
+    path('token-auth/', obtain_jwt_token)
+]
+
+urlpatterns = [
+    path('current_user/', current_user),
+    path('users/', UserList.as_view())
+]
