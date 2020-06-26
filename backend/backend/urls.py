@@ -14,34 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-]
-
-
-from django.contrib import admin
+from kanban.views import current_user, UserList
 from django.urls import path, include
 from rest_framework import routers
 from kanban import views
 from rest_framework_jwt.views import obtain_jwt_token
 
+
 router = routers.DefaultRouter()
 router.register(r'tasks', views.TaskView, 'task')
-urlpatterns = [path('admin/', admin.site.urls),path('api/', include(router.urls))]
 
-
-urlpatterns += [
+urlpatterns = [
+    path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-]
-
-urlpatterns = [
-    #...
-    path('token-auth/', obtain_jwt_token)
-]
-
-urlpatterns = [
-    path('current_user/', current_user),
-    path('users/', UserList.as_view())
+    path('token-auth/', obtain_jwt_token),
+    path('kanban/', include('kanban.urls')),
+    path('api/', include(router.urls))
 ]

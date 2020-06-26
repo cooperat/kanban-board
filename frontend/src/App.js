@@ -33,7 +33,7 @@ class App extends Component {
   componentDidMount() {
     this.refreshList();
     if (this.state.logged_in) {
-      fetch('http://localhost:8000/core/current_user/', {
+      fetch('http://localhost:8000/kanban/current_user/', {
         headers: {
           Authorization: `JWT ${localStorage.getItem('token')}`
         }
@@ -57,17 +57,19 @@ class App extends Component {
       .then(res => res.json())
       .then(json => {
         localStorage.setItem('token', json.token);
+        console.log(json);
         this.setState({
           logged_in: true,
           displayed_form: '',
           username: json.user.username
         });
-      });
+      })
+      .then(() => this.refreshList());
   };
 
   handle_signup = (e, data) => {
     e.preventDefault();
-    fetch('http://localhost:8000/core/users/', {
+    fetch('http://localhost:8000/kanban/users/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
